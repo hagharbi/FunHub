@@ -25,7 +25,7 @@
 
         .img-responsive {
             /* background-image: ; */
-            background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0)), url("assets/images/BG-02.jpeg");
+            background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0)), url("assets/images/BG-03.jpeg");
 
             background-size: cover;
             background-attachment: fixed;
@@ -77,12 +77,12 @@
                     <div class="card-body row no-gutters align-items-center">
                         <!--end of col-->
                         <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" type="search"
+                            <input id="searchEvent" class="form-control form-control-lg form-control-borderless" type="search"
                                 placeholder="Search topics or keywords">
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-primary" type="submit">Search</button>
+                            <button id="searchBtn" class="btn btn-lg btn-primary" type="submit">Search</button>
                         </div>
                         <!--end of col-->
                     </div>
@@ -99,6 +99,11 @@
                 </div>
             </div> -->
         </div>
+        
+        <div id="EventCards">
+
+        </div>
+
     </div>
 
     <!-- JavaScript Link -->

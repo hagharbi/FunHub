@@ -1,0 +1,13 @@
+{
+  "name": "project_one",
+  "version": "1.0.0",
+  "description": "API project",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.4.0"
+  }
+}

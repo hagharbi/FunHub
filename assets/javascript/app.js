@@ -17,7 +17,7 @@ $(document).ready(function () {
         console.log("Query: " + queryURL + $.param(queryParams));
 
         var finalURL = queryURL + "keyword=" + queryParams.keyword + "&size=" + queryParams.size + "&apikey=" + queryParams.apikey;
-        console.log("final url is ",finalURL);
+        console.log("final url is ", finalURL);
         return finalURL;
     }
 
@@ -33,18 +33,18 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function(response){
-            console.log("response is: ",response);
-            
+        }).then(function (response) {
+            console.log("response is: ", response);
+
             for (var i = 0; i < response._embedded.events.length; i++) {
 
-            var eventName = response._embedded.events[i].name;
-            console.log("event name is: ", eventName);
-            $("#EventCards").append("<p>" + eventName + "</p>")
+                var eventName = response._embedded.events[i].name;
+                console.log("event name is: ", eventName);
+                $("#EventCards").append("<p>" + eventName + "</p>")
 
             };
 
 
         });
-    })
+    });
 });

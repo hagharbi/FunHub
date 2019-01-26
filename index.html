@@ -44,15 +44,15 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <!-- <form class="card card-sm" id="formCard"> -->
-                    <div class="card-body align-items-center">
+                    <div id="event-card" class="card-body align-items-center">
                         <div class="form-group">
-                            <input type="input" class="form-control" id="exampleFormControlInput1" placeholder="Search topics or keywords">
+                            <input type="input" class="form-control" id="eventKey" placeholder="Search topics or keywords">
                         </div>
                         <div class="form-group">
-                            <input type="search" class="form-control" id="exampleFormControlInput1" placeholder="City">
+                            <input type="search" class="form-control" id="eventCity" placeholder="City">
                         </div>
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" placeholder=" ">
+                            <select class="form-control" id="eventCategory" placeholder=" ">
                                 <option>Music</option>
                                 <option>Sports</option>
                                 <option>Arts</option>
@@ -61,7 +61,7 @@
                             </select>
                         </div>
                         <div class="input-group">
-                            <button class="btn btn-primary my-2 my-sm-0 ml-auto" type="submit">Search</button>
+                            <button id="searchBtn" class="btn btn-primary my-2 my-sm-0 ml-auto" type="submit">Search</button>
                         </div>
                     </div>
                     <!-- </form> -->
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="assets/images/event-image-placeholder.png" class="card-img-top" alt="event-img1">
+                            <img src="assets/images/event-image-placeholder.png" id="event-image" class="card-img-top" alt="event-img1">
                         </div>
                         <div class="col-lg-8">
                             <div class="card-header" id="card-tabs">
@@ -103,8 +103,8 @@
                                 </ul>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Event Name</h5>
-                                <p class="card-text">Some description about the event</p>
+                                <h5 id="event-name" class="card-title"></h5>
+                                <p id="event-venue" class="card-text"></p>
                                 <div>
                                     <button class="btn btn-outline-primary" id="ticket-btn" href="#">Tickets</button>
                                 </div>

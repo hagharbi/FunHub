@@ -40,16 +40,15 @@ body.img-responsive {
 
 #event-time,
 #event-date {
-    /* color: white; */
-    /* text-align: center; */
+    color: white;
+    text-align: center;
 }
 
 #dateTime {
-    /* background: #007bff; */
-
+    background: #007bff;
 }
 
-#card-tabs {
-    /* margin: 0 auto; */
-    background: none;    
+#ticket-btn {
+
+
 }

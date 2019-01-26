@@ -19,13 +19,10 @@ $(document).ready(function () {
         var finalURL = queryURL + "keyword=" + queryParams.keyword + "&size=" + queryParams.size + "&apikey=" + queryParams.apikey;
         console.log("final url is ",finalURL);
         return finalURL;
-    }
+    };
 
-
-    //CLICK HANDLERS
-    //=====================================================
-
-    $("#searchBtn").on("click", function (event) {
+    function searchStuffs() {
+        
         event.preventDefault();
 
         var queryURL = buildQueryURL();
@@ -40,11 +37,46 @@ $(document).ready(function () {
 
             var eventName = response._embedded.events[i].name;
             console.log("event name is: ", eventName);
-            $("#EventCards").append("<p>" + eventName + "</p>")
+            $("#EventCards").append("<p>" + eventName + "</p>");
 
             };
 
 
         });
-    })
+    };
+
+    //CLICK HANDLERS
+    //=====================================================
+    $("#searchBtn").on("click", function (event) {
+        searchStuffs();
+    });
+    
+    $("#searchEvent").keypress(function(f){
+        if(f.which === 13) {
+            searchStuffs();
+        }
+    });
+
+    $("#drink-search-btn").on("click", function (e) {
+        e.preventDefault();
+
+        // Brewery API
+        var otherQueryUrl = "https://api.openbrewerydb.org/breweries?" + 
+                'austin';
+
+        $.ajax({
+            url: otherQueryUrl,
+            method: 'GET'
+        })
+        .then(
+            function (response) {
+                console.log('success:', response);
+            },
+            function (error) {
+                console.log('error:', error);
+            }
+        );
+    
+    });
+
 });

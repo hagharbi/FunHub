@@ -27,8 +27,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <img class="img-responsive" src="assets/images/FunHub-logo.svg" id="nav-logo" alt="">
         <form class="form-inline my-2 my-lg-0 ml-auto">
-            <input class="form-control " type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+            <!-- <input class="form-control " type="search" placeholder="Search" aria-label="Search"> -->
+            <button id="searchNav" class="btn btn-primary my-2 my-sm-0" type="submit">Search Again!</button>
         </form>
         </div>
     </nav>
@@ -70,53 +70,19 @@
         </div>
     </div>
 
-    <!-- Card Model -->
-    <div class="container">
-        <div class="row" id="top-row">
-            <div class="col-lg-12">
-                <div id="events" class="list-group">
-                    <div class="card" style="margin-bottom: 3rem">
-                        <div class="row row no-gutters">
-                            <div class="col-lg-4">
-                                <div class="card-header" id="dateTime">
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-6" id="event-date">
-                                            DATE
-                                        </div>
-                                        <!-- <div class="col-lg-6" id="event-time">
-                                            TIME
-                                        </div> -->
-                                    </div>
-                                </div>
-                                <img src="assets/images/event-image-placeholder.png" id="event-image" class="card-img-top" alt="event-img1">
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="card-header" id="card-tabs">
-                                    <ul class="nav nav-tabs card-header-tabs">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#">Details</a>
-                                        </li>
-                                        </li>
-                                        <li class="nav-item">
-                                            <!-- Add url to get brewery information -->
-                                            <a class="nav-link" href="#">More</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-body">
-                                    <h5 id="event-name" class="card-title"></h5>
-                                    <p id="event-venue" class="card-text"></p>
-                                    <div>
-                                        <button class="btn btn-outline-primary" id="ticket-btn" href="#">Tickets</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-    </div>
+    <!-- Card Tabs -->
+    <!-- <div class="card-header" id="card-tabs">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Details</a>
+            </li>
+            </li>
+            <li class="nav-item"> -->
+                <!-- Add url to get brewery information -->
+                <!-- <a class="nav-link" href="#">More</a>
+            </li>
+        </ul>
+    </div> -->
 
     <!-- Results go here -->
     <div class="container">
@@ -129,9 +95,32 @@
                 </div>
             </div>  
         </div>
-    </div>
 
+        <!-- Pagination -->
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a id="prev" class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a id="next" class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
+
+<br>
+
+<footer>
+    Copyright &copy; 2019 FunHub. All rights reserved.
+    <br />
+</footer>
 
     <!-- JavaScript Link -->
     <script src="./assets/javascript/app.js"></script>

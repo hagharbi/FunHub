@@ -1,12 +1,23 @@
 
-/* Style to fix the issue of text extending past panel length */
+/* ELEMENTS */
 * {
     box-sizing: border-box;
+    border-radius: 0 !important;
+}
+
+h2 {
+     font-family: "Damion", cursive;
+     font-size: 4rem;
+     letter-spacing: .3rem;
+}
+
+p {
+    margin-bottom: 0;
+    font-size: .9rem;
 }
 
 body.img-responsive {
-    /* background-image: ; */
-    background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0)), url("../images/BG-03.jpeg");
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0.1)), url("../images/BG-02.jpeg");
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -14,7 +25,9 @@ body.img-responsive {
 }
 
 .navbar {
-    background: rgb(13, 13, 13) !important;
+    background: none !important;
+    margin-bottom: 4rem;
+    height: 5rem;
 }
 
 #nav-logo {
@@ -23,10 +36,14 @@ body.img-responsive {
 }
 
 .jumbotron {
-  margin-top: 6rem;
+  margin-top: 3rem;
   color: white;
   background: none;
   /* text-shadow: .2rem .2rem .2rem black; */
+}
+
+.btn-outline-light {
+    border: solid .1rem white;
 }
 
 #hero-logo {
@@ -34,8 +51,23 @@ body.img-responsive {
     margin-bottom: 2rem;
 }
 
-#formCard {
-    background: #222;
+.card {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: solid 10px #f7f7f7;
+    background: white;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+#eventItem {
+    background: white;
+}
+
+.badge {
+    font-size: 18px;
 }
 
 #event-time,
@@ -44,30 +76,52 @@ body.img-responsive {
     text-align: center;
 }
 
+.btn-outline-danger {
+    margin: 2rem;
+}
+
+#searchBtn {
+    width: 25%;
+}
+
 #dateTime {
     background: #007bff;
 }
 
 footer {
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgb(13, 13, 13) !important;
-    color: white;
+    background-color: white;
+    color: rgb(206, 206, 206);
     text-align: center;
     padding-bottom: 20px;
     padding-top: 20px;
 }
 
+/* Modal */
 .modal {
-    background: gray;
     position: absolute;
     float: left;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    padding: 2rem;
 }
 
-.modal-content {
-    background: transparent;
+#modal-title {
+    text-align: left;
+    padding: 2rem;
+}
+
+ul {
+    margin: 0 1rem;
+}
+
+#modal-footer {
+    background-color: #dc3545;
+    color: white;
+    text-align: center;
+    padding: 1rem;
 }

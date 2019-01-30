@@ -1,5 +1,7 @@
 $(document).ready(function () {
+    $(".navbar").hide();
     var resultItems = [];
+    // var page = 0
 
     // Pulls info from Ticketmaster API based on keyword search
     function buildQueryURL() {
@@ -28,93 +30,94 @@ $(document).ready(function () {
     }
 
 
+
     // Display events from the API
     function displayEvents(response) {
         console.log("response is: ", response);
         
         var results = response._embedded;
         // for loop goes through each event info
+        $('#cardHolder').empty();
         for (var i = 0; i < results.events.length; i++) {
             console.log("Event items is ", results.events[0]);
         
-        var resultItem = results.events[i];
-        console.log("Result Item is ",resultItem)
-        
-        var eventItem = {
-            name: results.events[i].name,
-            imageURL: results.events[i].images[8].url,
-            venue: results.events[i]._embedded.venues[0].name + " in " + results.events[i]._embedded.venues[0].city.name,
-            date: results.events[i].dates.start.localDate,
-            ticket: results.events[i].url
-        };
-        resultItems.push(eventItem); // push item into a temp array
+            var resultItem = results.events[i];
+            console.log("Result Item is ",resultItem)
+            
+            var eventItem = {
+                name: results.events[i].name,
+                imageURL: results.events[i].images[8].url,
+                venue: results.events[i]._embedded.venues[0].name + " in " + results.events[i]._embedded.venues[0].city.name,
+                date: results.events[i].dates.start.localDate,
+                time: results.events[i].dates.start.localTime,
+                ticket: results.events[i].url
+            };
+            resultItems.push(eventItem); // push item into a temp array
 
-        var newCard = $("<div>");
-        newCard.addClass("card");
-        newCard.attr("id", eventItem.id);
+            var newCard = $("<div>");
+            newCard.addClass("card");
+            newCard.attr("id", eventItem.id);
 
-        var newRow = $("<div>");
-        newRow.addClass("row");
+            var newRow = $("<div>");
+            newRow.addClass("row");
 
-        var containerCarHeader = $("<div>");
-        containerCarHeader.addClass("col-lg-4");
+            var containerCarHeader = $("<div>");
+            containerCarHeader.addClass("col-lg-4");
 
-        var cardHeader = $("<div>");
-        cardHeader.addClass("card-header");
-        containerCarHeader.append(cardHeader);
+            var cardHeader = $("<div>");
+            cardHeader.addClass("card-header");
+            containerCarHeader.append(cardHeader);
 
-        //Event Date
-        var eventDate = $("<div>");
-        eventDate.addClass("badge badge-primary col-lg-6");
-        // eventDate.id("dateTime");
-        eventDate.html("DATE: " + eventItem.date);
-        cardHeader.append(eventDate);
+            //Event Date
+            var eventDate = $("<div>");
+            eventDate.addClass("badge badge-primary col-lg-12");
+            // eventDate.id("dateTime");
+            eventDate.html("DATE: " + eventItem.date + " at " + eventItem.time);
+            cardHeader.append(eventDate);
 
-        //Event Image
-        var eventImg = $("<img>");
-        eventImg.addClass("card-img-top");
-        eventImg.attr("src", eventItem.imageURL);
-        eventImg.attr("id", eventItem.id);
-        cardHeader.append(eventImg);
+            //Event Image
+            var eventImg = $("<img>");
+            eventImg.addClass("card-img-top");
+            eventImg.attr("src", eventItem.imageURL);
+            eventImg.attr("id", eventItem.id);
+            cardHeader.append(eventImg);
 
-        var cardDivContainer = $("<div>");
-        cardDivContainer.addClass("col-lg-8");
+            var cardDivContainer = $("<div>");
+            cardDivContainer.addClass("col-lg-8");
 
-        var cardBody = $("<div>");
-        cardBody.addClass("card-body col-lg-12")
+            var cardBody = $("<div>");
+            cardBody.addClass("card-body col-lg-12")
 
-        //Event Name
-        var h3 = $("<h3>");
-        h3.addClass("card-title");
-        h3.text(eventItem.name);
+            //Event Name
+            var h3 = $("<h3>");
+            h3.addClass("card-title");
+            h3.text(eventItem.name);
 
-        //Event Venue
-        var h4 = $("<h4>");
-        h4.addClass("card-text");
-        h4.text(eventItem.venue)
+            //Event Venue
+            var h4 = $("<h4>");
+            h4.addClass("card-text");
+            h4.text(eventItem.venue)
 
-        //Event Tickets 
-        var ticketButton = $("<a target='_blank'>");
-        ticketButton.addClass("btn btn-outline-primary");
-        ticketButton.attr("href",eventItem.ticket);
-        ticketButton.attr("id", eventItem.id)
-        ticketButton.text("Get Tickets");
-        
+            //Event Tickets 
+            var ticketButton = $("<a target='_blank'>");
+            ticketButton.addClass("btn btn-outline-primary");
+            ticketButton.attr("href",eventItem.ticket);
+            ticketButton.attr("id", eventItem.id)
+            ticketButton.text("Get Tickets");
+            
 
-        cardBody.append(h3);
-        cardBody.append(h4);
-        cardBody.append(ticketButton);
+            cardBody.append(h3);
+            cardBody.append(h4);
+            cardBody.append(ticketButton);
 
-        cardDivContainer.append(cardBody);
+            cardDivContainer.append(cardBody);
 
-        newRow.append(containerCarHeader);
-        newRow.append(cardDivContainer);
+            newRow.append(containerCarHeader);
+            newRow.append(cardDivContainer);
 
-        newCard.append(newRow);
+            newCard.append(newRow);
 
-        $("#cardHolder").append(newCard);
-
-
+            $("#cardHolder").prepend(newCard);
         };
         // End for loop
 
@@ -126,7 +129,8 @@ $(document).ready(function () {
 
     $("#searchBtn").on("click", function (event) {
         event.preventDefault();
-
+        $(".navbar").show();
+        $(".jumbotron").hide();
         var queryURL = buildQueryURL();
 
         $.ajax({
@@ -135,4 +139,11 @@ $(document).ready(function () {
         }).then(displayEvents); 
 
     });
+
+    $("#searchNav").on("click", function () {
+       $(".jumbotron").show();
+       $(".navbar").hide();
+    });
+ 
+
 });

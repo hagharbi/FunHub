@@ -1,5 +1,7 @@
 $(document).ready(function () {
     $(".navbar").hide();
+    // $(".modal").hide();
+
     var resultItems = [];
     // var page = 0
 
@@ -17,7 +19,7 @@ $(document).ready(function () {
             "apikey": "cOCftMAgGiO3Vo0MIfTweGnJzcyFzoun",
 
         };
-
+        
         queryParams.keyword = $("#eventKey").val().trim();
         queryParams.city = $("#eventCity").val().trim();
         queryParams.classificationName = $("#eventCategory").val().trim();
@@ -104,11 +106,18 @@ $(document).ready(function () {
             ticketButton.attr("href",eventItem.ticket);
             ticketButton.attr("id", eventItem.id)
             ticketButton.text("Get Tickets");
-            
 
+            // Brewery Button
+            var brewButton = $("<button data-toggle='modal' data-target='.bd-example-modal-lg'>");
+            brewButton.addClass("btn btn-outline-danger");
+            brewButton.text("Fetch for nearby Breweries!🍺")
+
+
+     
             cardBody.append(h3);
             cardBody.append(h4);
             cardBody.append(ticketButton);
+            cardBody.append(brewButton);
 
             cardDivContainer.append(cardBody);
 
@@ -121,7 +130,10 @@ $(document).ready(function () {
         };
         // End for loop
 
-            
+        $("btn-outline-danger").on("click ", function () {
+            $("#pop-up").show();
+
+        });
     }
 
 

@@ -48,8 +48,26 @@ body.img-responsive {
     background: #007bff;
 }
 
-#ticket-btn {
-
-
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(13, 13, 13) !important;
+    color: white;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
+.modal {
+    background: gray;
+    position: absolute;
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    background: transparent;
+}

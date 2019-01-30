@@ -19,14 +19,21 @@ $(document).ready(function () {
             "apikey": "cOCftMAgGiO3Vo0MIfTweGnJzcyFzoun",
 
         };
-        
+
         queryParams.keyword = $("#eventKey").val().trim();
+        console.log("keyword is: ", queryParams.keyword);
         queryParams.city = $("#eventCity").val().trim();
-        queryParams.classificationName = $("#eventCategory").val().trim();
+        console.log("city is: ", queryParams.city);
+        $("#eventCategory").val().trim() === "Select Category" ? queryParams.classificationName = "" : queryParams.classificationName = $('#eventCategory').val().trim();
+        // if( $("#eventCategory").val().trim() !== "Select Category")
+        // queryParams.classificationName = $("#eventCategory").val().trim();
+        // else
+        // queryParams.classificationName = "";
+        console.log("category is: ", queryParams.classificationName);
 
         console.log("Query: " + queryURL + $.param(queryParams));
 
-        var finalURL = queryURL + "keyword=" + queryParams.keyword + "&city" + queryParams.city + "&classificationName" + queryParams.classificationName + "&size=" + queryParams.size + "&apikey=" + queryParams.apikey;
+        var finalURL = queryURL + "keyword=" + queryParams.keyword + "&city=" + queryParams.city + "&classificationName=" + queryParams.classificationName + "&size=" + queryParams.size + "&apikey=" + queryParams.apikey;
         console.log("final url is ", finalURL);
         return finalURL;
     }
@@ -46,6 +53,8 @@ $(document).ready(function () {
             var resultItem = results.events[i];
             console.log("Result Item is ",resultItem)
             
+
+
             var eventItem = {
                 name: results.events[i].name,
                 imageURL: results.events[i].images[8].url,

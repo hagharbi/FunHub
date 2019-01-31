@@ -74,25 +74,55 @@ $(document).ready(function () {
                     city: response[j].city,
                     state: response[j].state,
                     zipcode: response[j].postal_code,
-                    phone: response[j].phone
+                    phone: response[j].phone,
+                    website: response[j].website_url
                 }
 
                 console.log("breweries are ", breweries.name);
-
                 var newRow = $("<tr>").append(
-                    $("<td>").text(breweries.name),
-                    $("<td>").text(breweries.street, breweries.city, breweries.state, breweries.zipcode)
+                    $('<a>',{
+                        text: breweries.name,
+                        title: "Brewery Website",
+                        href: breweries.website,
+                        click: function(){ ignoreThisRandomFunction(options.rowId);return false;}
+                    }).appendTo("<tr>"),
+                    $("<td>").text("Address: " + breweries.street, breweries.city, breweries.state, breweries.zipcode),
+                    $("<td>").text("Phone: " + breweries.phone),
                 );
 
                 $("#breweries-table > tbody").append(newRow);
-
-            }
-
-
-
+            };
         });
 
-    }
+    };
+
+    // function formatDate(date) {
+    //     var d = new Date(date);
+    //     var hh = d.getHours();
+    //     var m = d.getMinutes();
+    //     var s = d.getSeconds();
+    //     var dd = "AM";
+    //     var h = hh;
+    //     if (h >= 12) {
+    //       h = hh - 12;
+    //       dd = "PM";
+    //     }
+    //     if (h == 0) {
+    //       h = 12;
+    //     }
+    //     m = m < 10 ? "0" + m : m;
+      
+    //     s = s < 10 ? "0" + s : s;
+      
+    //     var pattern = new RegExp("0?" + hh + ":" + m + ":" + s);
+      
+    //     var replacement = h + ":" + m;
+    //     /* if you want to add seconds
+    //     replacement += ":"+s;  */
+    //     replacement += " " + dd;
+      
+    //     return date.replace(pattern, replacement);
+    // };
 
     // Display events from the Ticket Master API
     function displayEvents(response) {

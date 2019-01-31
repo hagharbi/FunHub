@@ -66,7 +66,7 @@ $(document).ready(function () {
         }).then(function(response) {
 
             console.log("This is the response ", response);
-            for (var j = 0; j > response.length; j++) {
+            for (var j = 0; j < response.length; j++) {
 
                 var breweries = {
                     name: response[j].name,

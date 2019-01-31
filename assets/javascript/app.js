@@ -3,10 +3,9 @@ $(document).ready(function () {
     $(".footer").hide();
 
     var resultItems = [];
-    // var page = 0
 
     // Pulls info from Ticketmaster API based on keyword search
-    function buildQueryURL() {
+    function ticketmasterQueryURL() {
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?";
         // https://app.ticketmaster.com/discovery/v2/events.json?keyword=football&city=denver&classificationName=sports&size=10&apikey=cOCftMAgGiO3Vo0MIfTweGnJzcyFzoun
 
@@ -38,9 +37,64 @@ $(document).ready(function () {
         return finalURL;
     }
 
+    // Pulls info from Open Brewery API based on event location
+    function breweryQueryURL() {
+        var brewURL = "https://api.openbrewerydb.org/breweries?";
+
+        // Store query parameters needed to get from this API
+        var brewParams = {
+            "city": " "
+        };
+
+        brewParams.city = $("#eventCity").val().trim();
+        console.log("brewery location is: ", brewParams.city);
+
+        var finalBrewURL = brewURL + "by_city=" + brewParams.city;
+        console.log("Brewery url is ", finalBrewURL);
+        return  finalBrewURL;
+
+    }
+
+    // Display breweries from Open Brewery API
+    function displayBreweries() {
+        var queryURL = breweryQueryURL();
+        event.preventDefault();
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+
+            console.log("This is the response ", response);
+            for (var j = 0; j > response.length; j++) {
+
+                var breweries = {
+                    name: response[j].name,
+                    street: response[j].street,
+                    city: response[j].city,
+                    state: response[j].state,
+                    zipcode: response[j].postal_code,
+                    phone: response[j].phone
+                }
+
+                console.log("breweries are ", breweries.name);
+
+                var newRow = $("<tr>").append(
+                    $("<td>").text(breweries.name),
+                    $("<td>").text(breweries.street, breweries.city, breweries.state, breweries.zipcode)
+                );
+
+                $("#breweries-table > tbody").append(newRow);
+
+            }
 
 
-    // Display events from the API
+
+        });
+
+    }
+
+    // Display events from the Ticket Master API
     function displayEvents(response) {
         console.log("response is: ", response);
         var results = response._embedded;
@@ -133,8 +187,10 @@ $(document).ready(function () {
         };
         // End of loop
 
-        $("btn-outline-danger").on("click ", function () {
+        $(".btn-outline-danger").on("click", function (event) {
+            event.preventDefault();
             $("#pop-up").show();
+            displayBreweries();
 
         });
     }
@@ -146,7 +202,7 @@ $(document).ready(function () {
         $(".jumbotron").hide();
         $(".navbar").show();
         $(".footer").show();
-        var queryURL = buildQueryURL();
+        var queryURL = ticketmasterQueryURL();
 
         $.ajax({
             url: queryURL,
@@ -158,7 +214,50 @@ $(document).ready(function () {
     $("#searchNav").on("click", function () {
         $(".jumbotron").show();
         $(".navbar").hide();
+
     });
+
+    // Brewery API
+    // $(".brewery-button").on("click ", function () {
+
+    //     $("#pop-up").show();
+
+
+    //     console.log("This is working right?");
+
+    //     // Brewery API
+    //     var otherQueryUrl = "https://api.openbrewerydb.org/breweries?by_city=san+diego";
+
+    //     // City from other API (not sure if this can dig into other API outside of the other function)
+    //     console.log(response._embedded.events[i].venues.city.name);
+
+    //     $.ajax({
+    //         url: otherQueryUrl,
+    //         method: 'GET'
+    //     })
+    //         .then(
+    //             // Populate the name of the brewery, it's full address, phone number, and a link to it's website
+    //             // Need to either create these fields via JS or have them in the html and hidden
+    //             function (brewery) {
+    //                 $("#brewery-name").text(brewery.name);
+    //                 $("#brewery-address").text(
+    //                     brewery.street +
+    //                     " " +
+    //                     brewery.city +
+    //                     " " +
+    //                     brewery.state +
+    //                     " " +
+    //                     brewery.postal_code);
+    //                 $("#brewery-phone").text(brewery.phone);
+    //                 $("#brewery-website").text(brewery.name);
+    //                 $("#brewery-website").attr("href", brewery.website_url);
+    //                 console.log('success:', brewery);
+    //             },
+    //             function (error) {
+    //                 console.log('error:', error);
+    //             }
+    //         );
+    // });
 
 
 });

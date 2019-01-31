@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $(".navbar").hide();
-    // $(".modal").hide();
+    $(".footer").hide();
 
     var resultItems = [];
     // var page = 0
@@ -43,17 +43,13 @@ $(document).ready(function () {
     // Display events from the API
     function displayEvents(response) {
         console.log("response is: ", response);
-        
         var results = response._embedded;
-        // for loop goes through each event info
         $('#cardHolder').empty();
+        // for loop goes through each event info
         for (var i = 0; i < results.events.length; i++) {
             console.log("Event items is ", results.events[0]);
-        
-            var resultItem = results.events[i];
-            console.log("Result Item is ",resultItem)
-            
 
+            var resultItem = results.events[i];
 
             var eventItem = {
                 name: results.events[i].name,
@@ -66,24 +62,24 @@ $(document).ready(function () {
             resultItems.push(eventItem); // push item into a temp array
 
             var newCard = $("<div>");
-            newCard.addClass("card");
+            newCard.addClass("card col-lg-12");
             newCard.attr("id", eventItem.id);
 
             var newRow = $("<div>");
             newRow.addClass("row");
 
-            var containerCarHeader = $("<div>");
-            containerCarHeader.addClass("col-lg-4");
+            var containerCardHeader = $("<div>");
+            containerCardHeader.addClass("col-lg-4");
 
             var cardHeader = $("<div>");
             cardHeader.addClass("card-header");
-            containerCarHeader.append(cardHeader);
+            containerCardHeader.append(cardHeader);
 
             //Event Date
             var eventDate = $("<div>");
             eventDate.addClass("badge badge-primary col-lg-12");
             // eventDate.id("dateTime");
-            eventDate.html("DATE: " + eventItem.date + " at " + eventItem.time);
+            eventDate.html(eventItem.date + " at " + eventItem.time);
             cardHeader.append(eventDate);
 
             //Event Image
@@ -112,17 +108,15 @@ $(document).ready(function () {
             //Event Tickets 
             var ticketButton = $("<a target='_blank'>");
             ticketButton.addClass("btn btn-outline-primary");
-            ticketButton.attr("href",eventItem.ticket);
+            ticketButton.attr("href", eventItem.ticket);
             ticketButton.attr("id", eventItem.id)
-            ticketButton.text("Get Tickets");
+            ticketButton.html("<i class='fas fa-ticket-alt'>" + "</i>" + " Get Tickets");
 
             // Brewery Button
             var brewButton = $("<button data-toggle='modal' data-target='.bd-example-modal-lg'>");
             brewButton.addClass("btn btn-outline-danger");
-            brewButton.text("Fetch for nearby Breweries!🍺")
+            brewButton.html("<i class='fas fa-beer'>" + "</i>" + " Fetch for nearby Breweries!")
 
-
-     
             cardBody.append(h3);
             cardBody.append(h4);
             cardBody.append(ticketButton);
@@ -130,14 +124,14 @@ $(document).ready(function () {
 
             cardDivContainer.append(cardBody);
 
-            newRow.append(containerCarHeader);
+            newRow.append(containerCardHeader);
             newRow.append(cardDivContainer);
 
             newCard.append(newRow);
 
             $("#cardHolder").prepend(newCard);
         };
-        // End for loop
+        // End of loop
 
         $("btn-outline-danger").on("click ", function () {
             $("#pop-up").show();
@@ -145,26 +139,26 @@ $(document).ready(function () {
         });
     }
 
-
     //Event handler on click
 
     $("#searchBtn").on("click", function (event) {
         event.preventDefault();
-        $(".navbar").show();
         $(".jumbotron").hide();
+        $(".navbar").show();
+        $(".footer").show();
         var queryURL = buildQueryURL();
 
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(displayEvents); 
+        }).then(displayEvents);
 
     });
 
     $("#searchNav").on("click", function () {
-       $(".jumbotron").show();
-       $(".navbar").hide();
+        $(".jumbotron").show();
+        $(".navbar").hide();
     });
- 
+
 
 });

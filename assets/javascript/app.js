@@ -214,6 +214,7 @@ $(document).ready(function () {
     $("#searchNav").on("click", function () {
         $(".jumbotron").show();
         $(".navbar").hide();
+        $('#cardHolder').empty();
 
     });
 

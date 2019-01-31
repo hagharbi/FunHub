@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>Page Title</title>
+    <!-- <link rel="shortcut icon" href="favicon.icon" type="image/x-icon"> -->
+    <title>Fun Hub</title>
 
     <!-- Bootstrap CSS CDN  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
@@ -117,9 +117,13 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <ul>
-                        <!-- Brewery API response Append here -->
-                    </ul>
+                    <!-- Brewery API response Append here -->
+                    <div class="table-responsive">
+                       <table class="table" id="breweries-table">
+                          <tbody>
+                          </tbody> 
+                       </table>
+                    </div>
                     <div id="modal-footer">
                         <h4><strong><em>Remember to take a rideshare!</em></strong></h4>
                     </div>
@@ -127,23 +131,6 @@
             </div>
         </div>
 
-        <!-- Pagination -->
-        <!-- <nav aria-label="...">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a id="prev" class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a id="next" class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav> -->
-    </div>
     </div>
 
     <br>

@@ -80,49 +80,22 @@ $(document).ready(function () {
 
                 console.log("breweries are ", breweries.name);
                 var newRow = $("<tr>").append(
-                    $('<a>',{
+                    $("<a>", {
                         text: breweries.name,
                         title: "Brewery Website",
                         href: breweries.website,
                         click: function(){ ignoreThisRandomFunction(options.rowId);return false;}
                     }).appendTo("<tr>"),
-                    $("<td>").text("Address: " + breweries.street, breweries.city, breweries.state, breweries.zipcode),
+                    $("<td>").text("Address: " + breweries.street + ", " + breweries.city + ", " + breweries.state + ", " + breweries.zipcode),
                     $("<td>").text("Phone: " + breweries.phone),
                 );
-
+                
+                
                 $("#breweries-table > tbody").append(newRow);
             };
         });
 
     };
-
-    // function formatDate(date) {
-    //     var d = new Date(date);
-    //     var hh = d.getHours();
-    //     var m = d.getMinutes();
-    //     var s = d.getSeconds();
-    //     var dd = "AM";
-    //     var h = hh;
-    //     if (h >= 12) {
-    //       h = hh - 12;
-    //       dd = "PM";
-    //     }
-    //     if (h == 0) {
-    //       h = 12;
-    //     }
-    //     m = m < 10 ? "0" + m : m;
-      
-    //     s = s < 10 ? "0" + s : s;
-      
-    //     var pattern = new RegExp("0?" + hh + ":" + m + ":" + s);
-      
-    //     var replacement = h + ":" + m;
-    //     /* if you want to add seconds
-    //     replacement += ":"+s;  */
-    //     replacement += " " + dd;
-      
-    //     return date.replace(pattern, replacement);
-    // };
 
     // Display events from the Ticket Master API
     function displayEvents(response) {
@@ -199,7 +172,7 @@ $(document).ready(function () {
             // Brewery Button
             var brewButton = $("<button data-toggle='modal' data-target='.bd-example-modal-lg'>");
             brewButton.addClass("btn btn-outline-danger");
-            brewButton.html("<i class='fas fa-beer'>" + "</i>" + " Fetch for nearby Breweries!")
+            brewButton.html("<i class='fas fa-beer'>" + "</i>" + " Fetch for nearby Breweries!");
 
             cardBody.append(h3);
             cardBody.append(h4);
@@ -217,12 +190,15 @@ $(document).ready(function () {
         };
         // End of loop
 
+        // Brewery button handler
         $(".btn-outline-danger").on("click", function (event) {
             event.preventDefault();
             $("#pop-up").show();
             displayBreweries();
 
+
         });
+
     }
 
     //Event handler on click
@@ -238,7 +214,7 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(displayEvents);
-
+    
     });
 
     $("#searchNav").on("click", function () {
@@ -247,48 +223,6 @@ $(document).ready(function () {
         $('#cardHolder').empty();
 
     });
-
-    // Brewery API
-    // $(".brewery-button").on("click ", function () {
-
-    //     $("#pop-up").show();
-
-
-    //     console.log("This is working right?");
-
-    //     // Brewery API
-    //     var otherQueryUrl = "https://api.openbrewerydb.org/breweries?by_city=san+diego";
-
-    //     // City from other API (not sure if this can dig into other API outside of the other function)
-    //     console.log(response._embedded.events[i].venues.city.name);
-
-    //     $.ajax({
-    //         url: otherQueryUrl,
-    //         method: 'GET'
-    //     })
-    //         .then(
-    //             // Populate the name of the brewery, it's full address, phone number, and a link to it's website
-    //             // Need to either create these fields via JS or have them in the html and hidden
-    //             function (brewery) {
-    //                 $("#brewery-name").text(brewery.name);
-    //                 $("#brewery-address").text(
-    //                     brewery.street +
-    //                     " " +
-    //                     brewery.city +
-    //                     " " +
-    //                     brewery.state +
-    //                     " " +
-    //                     brewery.postal_code);
-    //                 $("#brewery-phone").text(brewery.phone);
-    //                 $("#brewery-website").text(brewery.name);
-    //                 $("#brewery-website").attr("href", brewery.website_url);
-    //                 console.log('success:', brewery);
-    //             },
-    //             function (error) {
-    //                 console.log('error:', error);
-    //             }
-    //         );
-    // });
 
 
 });

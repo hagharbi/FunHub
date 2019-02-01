@@ -79,19 +79,35 @@ $(document).ready(function () {
                 }
 
                 console.log("breweries are ", breweries.name);
-                var newRow = $("<tr>").append(
-                    $("<a>", {
-                        text: breweries.name,
-                        title: "Brewery Website",
-                        href: breweries.website,
-                        click: function(){ ignoreThisRandomFunction(options.rowId);return false;}
-                    }).appendTo("<tr>"),
-                    $("<td>").text("Address: " + breweries.street + ", " + breweries.city + ", " + breweries.state + ", " + breweries.zipcode),
-                    $("<td>").text("Phone: " + breweries.phone),
-                );
+                var newRow = $("<tr>");
                 
+                var brewName = $("<a target='_blank'>");
+                brewName.html("<td>" + breweries.name + "</td>");
+                brewName.attr("href", breweries.website);
+                // brewName.text(breweries.name);
+                newRow.append(brewName);
+
+                var brewAddress = $("<td>");
+                brewAddress.text("Address: " + breweries.street + ", " + breweries.city + ", " + breweries.state + ", " + breweries.zipcode);
+                newRow.append(brewAddress);
+                
+                var brewPhone = $("<td>");
+                brewPhone.text("Phone: " + breweries.phone);
+                newRow.append(brewPhone);
                 
                 $("#breweries-table > tbody").append(newRow);
+                // var newRow = $("<tr>").append(
+                //     $("<a>", {
+                //         text: breweries.name,
+                //         title: "Brewery Website",
+                //         href: breweries.website,
+                //         click: function () { ignoreThisRandomFunction(options.rowId); return false; }
+                //     }).appendTo("<tr>"),
+                //     $("<td>").text("Address: " + breweries.street + ", " + breweries.city + ", " + breweries.state + ", " + breweries.zipcode),
+                //     $("<td>").text("Phone: " + breweries.phone),
+                // );
+                
+
             };
         });
 

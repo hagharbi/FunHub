@@ -108,20 +108,33 @@ footer {
     top: 50%;
     transform: translate(-50%, -50%);
     padding: 2rem;
+    height: 80%;
 }
 
-#modal-title {
+.modal-header {
     text-align: left;
-    padding: 2rem;
+    padding: 1rem;
+    background: #007bff;
 }
 
-ul {
-    margin: 0 1rem;
+.modal-title {
+    color: white;
+    font-family: "Damion", cursive;
+    font-size: 3rem;
+    letter-spacing: .1rem;
+}
+
+.close {
+    color: white;
 }
 
 #modal-footer {
     background-color: #dc3545;
     color: white;
     text-align: center;
+    padding: 1rem;
+}
+
+table, td {
     padding: 1rem;
 }
